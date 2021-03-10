@@ -2,7 +2,7 @@
 title: "Rettke-Sam-ada-homework-1"
 author: "Sam Rettke"
 date: "3/7/2021"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
