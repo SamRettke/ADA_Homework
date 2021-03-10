@@ -1,0 +1,113 @@
+---
+title: "Rettke-Sam-ada-homework-1"
+author: "Sam Rettke"
+date: "3/7/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+
+## Challenge 1
+load(tidyverse)
+f <- read.delim("darwin.txt", header = TRUE)
+length(f)
+length(f[[1]])
+p34 <- slice(f,34)
+print(p34)
+split <- str_split(p34, boundary("word"), n = Inf, simplify = FALSE)
+split
+word_list <- as.data.frame(table(split))
+word_list
+length(word_list[[1]])
+hightolow <- word_list[order(-word_list$Freq),]
+hightolow
+hightolow[1, ]
+freq1 <- filter(hightolow, Freq == 1)
+length(freq1[[1]])
+freq5 <- filter(hightolow, Freq >= 5)
+length(freq5[[1]])
+p56 <- slice(f,56)
+final_quote <- tibble(p56[[1]])
+print(final_quote)
+split_quote <- str_split(final_quote, boundary("word"), n = Inf, simplify = FALSE)
+
+new3col <- matrix(
+  data = split_quote[[1]],
+  nrow = round(222/3),
+  ncol = 3,
+  byrow = TRUE
+)
+every_third <- new3col[,3]
+print(every_third)
+every_third <- sort(every_third, decreasing = TRUE)
+print(every_third)
+
+## Challenge 2
+t <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+names(t) <- city
+t
+t[1:3]
+t[3]
+t[5]
+
+## Challenge 3 (with original instructions)
+m1 <- matrix(data = 159:0, nrow = 8, ncol = 20, byrow = FALSE)
+m1[8, 20] <- ''
+m1
+print(m1[5,2])
+print(m1[5:7, 1:20])
+
+m2 <- m1[3:6, 4:9]
+class(m2)
+mode(m2)
+
+## Challenge 3 (with new instructions)
+m1_new <- matrix(data = 160:1, nrow = 8, ncol = 20, byrow = FALSE)
+
+## Challenge 4
+
+evenlist <- matrix(data = 800:1, nrow = 400, ncol = 2, byrow = TRUE)
+evenlist <- evenlist[1:400,1:1]
+
+(a <- array(
+  evenlist,
+  dim = c(5,5,4,4)
+))
+
+(a[1, 1, 1, 2])
+(a[2, 3, 2, ])
+(a[1:5, 1:5, 3, 3])
+
+## Challenge 5
+
+names(Superfamily_Lorisoidea) <- c("Lorisidae", "Galagidae")
+names(Infraorder_Lorisiformes) <- c("Superfamily_Lorisoidea")
+names(Superfamily_Lemuroidea) <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
+names(Infraorder_Lemuriformes) <- c("Superfamily_Lemuroidea")
+names(Suborder_Strepsirrhini) <- c("Infraorder_Lorisiformes", "Infraorder_Lemuriformes")
+names(Superfamily_Tarsioidea) <- c("Tarsiidae")
+names(Infraorder_Tarsiiformes) <- c("Superfamily_Tarsioidea")
+names(Superfamily_Ceboidea) <- c("Cebidae", "Atelidae", "Pitheciidae")
+names(Parvorder_Platyrrhini) <- c("Superfamily_Ceboidea")
+names(Superfamily_Hominoidea) <- c("Hylobatidae", "Hominidae")
+names(Superfamily_Cercopithecoidea) <- c("Cercopithecidae")
+names(Parvorder_Catarrhini) <- c("Superfamily_Hominoidea", "Superfamily_Cercopithecoidea")
+names(Infraorder_Simiiformes) <- c("Parvorder_Platyrrhini", "Parvorder_Catarrhini")
+names(Suborder_Haplorhini) <- c("Infraorder_Tarsiiformes", "Infraorder_Simiiformes")
+names(Order_Primates) <- c("Suborder_Strepsirrhini", "Suborder_Haplorhini")
+Order_Primates
+
+Platyrrhini <- Infraorder_Simiiformes[[1]]
+print(Platyrrhini)
+class(Platyrrhini)
+mode(Platyrrhini)
+
+Infraorder_Tarsiiformes$Superfamily_Tarsioidea
